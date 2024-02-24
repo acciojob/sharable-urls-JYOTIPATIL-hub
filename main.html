@@ -1,8 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharable URLs</title>
+</head>
+<body>
+    <form id="shareForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+        <br>
+        <button id="button" type="button" onclick="generateUrl()">Share</button>
+    </form>
+    <h3 id="url">https://localhost:8080/</h3>
 
+    <script>
+        function generateUrl() {
+            const name = document.getElementById("name").value;
+            const year = document.getElementById("year").value;
+            const queryString = `?name=${encodeURIComponent(name)}&year=${year}`;
+            const baseUrl = "https://localhost:8080/";
+            const finalUrl = baseUrl + queryString;
+            document.getElementById("url").textContent = finalUrl;
+        }
+    </script>
+</body>
 </html>
